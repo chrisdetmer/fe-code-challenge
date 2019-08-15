@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {updateSelected} from 'spot/spot-actions';
 import SpotList from './spot-list/SpotList';
+import SpotDetail from './spot-detail/SpotDetail';
 
 const Search = ({
     selectedSpot,
@@ -16,7 +17,14 @@ const Search = ({
                 selectedSpot={selectedSpot}
                 setSpot={setSpot}
             />
-            <div className="Search-content" />
+            <div className="Search-content">
+                {selectedSpot &&
+                <SpotDetail
+                    spot={selectedSpot}
+                    setSpot={setSpot}
+                    key={selectedSpot.id}
+                />}
+            </div>
         </div>
     );
 };

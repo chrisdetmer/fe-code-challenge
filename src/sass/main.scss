@@ -42,12 +42,14 @@
 @import "common/typography";
 @import "common/Button";
 @import "common/TextButton";
+@import "common/Modal";
 
 /* ----------------------------------------------------------------------------- *\
    Project
 \* ----------------------------------------------------------------------------- */
 
 @import "spot/SpotItem";
+@import "spot/SpotDetail";
 @import "search/Search";
 @import "checkout/Checkout";
 @import "confirmation/Confirmation";
