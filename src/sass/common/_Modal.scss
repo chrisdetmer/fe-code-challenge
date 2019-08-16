@@ -18,26 +18,26 @@
     opacity: 0;
 }
 
+.Modal-showing {
+    opacity: 1;
+}
+
 .Modal-enter {
     opacity: 0;
 }
 
-.Modal-enter-active {
+.Modal-enter.Modal-enter-active {
     opacity: 1;
     transition: opacity 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-.Modal-exit {
+.Modal-leave {
     opacity: 1;
 }
 
-.Modal-exit-active {
+.Modal-leave.Modal-leave-active {
     opacity: 0;
     transition: opacity 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.Modal-showing {
-    opacity: 1;
 }
 
 .Modal-wrapper {

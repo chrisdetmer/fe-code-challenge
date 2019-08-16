@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import {updateSelected} from 'spot/spot-actions';
 import SpotList from './spot-list/SpotList';
 import SpotDetail from './spot-detail/SpotDetail';
+import {CSSTransitionGroup} from 'react-transition-group';
 
 const Search = ({
     selectedSpot,
@@ -18,12 +19,18 @@ const Search = ({
                 setSpot={setSpot}
             />
             <div className="Search-content">
-                {selectedSpot &&
-                <SpotDetail
-                    spot={selectedSpot}
-                    setSpot={setSpot}
-                    key={selectedSpot.id}
-                />}
+                <CSSTransitionGroup
+                    transitionName="Modal"
+                    transitionEnterTimeout={200}
+                    transitionLeaveTimeout={200}
+                >
+                    {selectedSpot &&
+                    <SpotDetail
+                        spot={selectedSpot}
+                        setSpot={setSpot}
+                        key={selectedSpot.id}
+                    />}
+                </CSSTransitionGroup>
             </div>
         </div>
     );

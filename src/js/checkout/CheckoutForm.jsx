@@ -55,7 +55,7 @@ const CheckoutForm = props => {
 
     return (
         <div className="Checkout-form">
-            <form>
+            <form onSubmit={handleSubmit}>
                 <Field
                     name="firstname"
                     type="text"
@@ -82,10 +82,9 @@ const CheckoutForm = props => {
                 />
                 <div className="Button-block">
                     <Button
-                        type="button"
+                        type="submit"
                         color="primary"
                         disabled={pristine || submitting}
-                        onClick={handleSubmit}
                     >
                         Purchase for ${price}
                     </Button>

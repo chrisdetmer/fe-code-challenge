@@ -2,8 +2,7 @@ import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {push} from 'connected-react-router';
-// import getFormValues from 'redux-form';
-// import {purchase} from 'spot/spot-actions';
+import {purchase} from 'spot/spot-actions';
 import CheckoutForm from 'checkout/CheckoutForm';
 import TextButton from 'common/TextButton';
 import Image from 'common/Image';
@@ -12,9 +11,7 @@ class Checkout extends PureComponent {
     static propTypes = {
         selectedSpot: PropTypes.object,
         pushTo: PropTypes.func.isRequired,
-        // data: PropTypes.object,
-        // doCheckout: PropTypes.func,
-        // purchase: PropTypes.object
+        doCheckout: PropTypes.func.isRequired
     };
 
     constructor(props) {
@@ -30,17 +27,15 @@ class Checkout extends PureComponent {
         }
     }
 
-    // _handleSubmit = evt => {
-    //     const {
-    //         doCheckout,
-    //         // data
-    //     } = this.props;
+    _onSubmit = values => {
+        const {
+            doCheckout,
+            pushTo
+        } = this.props;
 
-    //     // const values = getFormValues('CheckoutForm')(state);
-
-    //     // console.log(data);
-    //     // doCheckout(data);
-    // }
+        doCheckout(values);
+        pushTo('/confirmation');
+    }
 
     render() {
         const {
@@ -51,7 +46,7 @@ class Checkout extends PureComponent {
             return null;
         }
 
-        const price = selectedSpot.price * 0.01
+        const price = selectedSpot.price * 0.01;
 
         return (
             <div className="Checkout">
@@ -66,7 +61,10 @@ class Checkout extends PureComponent {
                             <p>{selectedSpot.distance}</p>
                         </div>
                     </div>
-                    <CheckoutForm price={price.toFixed(2)} />
+                    <CheckoutForm
+                        price={price.toFixed(2)}
+                        onSubmit={this._onSubmit}
+                    />
                 </div>
             </div>
         );
@@ -78,19 +76,16 @@ const mapStateToProps = state => {
         spot: {
             selected: selectedSpot
         },
-        // checkout: getFormValues('CheckoutForm')(state)
-
     } = state;
 
     return {
-        selectedSpot,
-        // data
+        selectedSpot
     };
 };
 
 const mapDispatchToProps = {
     pushTo: push,
-    // doCheckout: purchase
+    doCheckout: purchase
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Checkout);

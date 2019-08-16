@@ -63,16 +63,18 @@ class Confirmation extends PureComponent {
 
 const mapStateToProps = state => {
     const {
-        checkout: {
-            email
-        },
         spot: {
-            selected: selectedSpot
+            selected: selectedSpot,
+            checkout: {
+                email,
+                phone
+            }
         }
     } = state;
 
     return {
         email,
+        phone,
         selectedSpot
     };
 };

@@ -1,7 +1,6 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-// import CSSTransition from 'react-transition-group';
 
 export default class Modal extends PureComponent {
     static propTypes = {
